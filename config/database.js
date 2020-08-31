@@ -1,9 +1,7 @@
 //Require mongoose module
 const mongoose = require("mongoose");
 
-//Connect mongoose database to flights
-
-mongoose.connect("mongodb://localhost/videogames",{
+mongoose.connect(process.env.DATABASE_URL,{
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
