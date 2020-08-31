@@ -1,9 +1,11 @@
 var mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 var gameSchema = new mongoose.Schema({
-  name: String,
+  title: String,
   released: String,
   developer: String,
+  
 }, {
   timestamps: true
 });
