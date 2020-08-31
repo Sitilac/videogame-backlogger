@@ -6,3 +6,11 @@ body {
 a {
   color: #00B7FF;
 }
+body > nav {
+  grid-area: nav;
+  background-color: #b8c0c2;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 20px 0 30px;
+}

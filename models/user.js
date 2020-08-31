@@ -1,13 +1,6 @@
 var mongoose = require('mongoose');
 
-
-var factSchema = new mongoose.Schema({
-  text: String
-}, {
-  timestamps: true
-});
-
-var studentSchema = new mongoose.Schema({
+var userSchema = new mongoose.Schema({
   name: String,
   email: String,
   avatar: String,
