@@ -10,6 +10,7 @@ module.exports = {
 
 function create(req, res) {
   const game = new Game(req.body);
+  console.log(req.body)
   res.redirect("/games");
   game.save(function (err) {
     if (err) return res.render("games/new");
@@ -32,7 +33,6 @@ function show(req, res) {
     .populate("developer")
     .exec(function (err, game) {
         Developer.find({ _id: { $nin: game.developer } }, function (err, developers) {
-          console.log(developers);
           res.render("games/show", { title: "Game Detail", game, developers });
         });
       });

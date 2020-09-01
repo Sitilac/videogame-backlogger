@@ -3,9 +3,9 @@ var router = express.Router();
 
 const developersCtrl = require('../controllers/developers')
 
-router.get('/new', developersCtrl.new);
-router.post('/gamess/:id/developers', developersCtrl.addToGame);
-router.post('/', developersCtrl.create);
+router.get('/developers/new', developersCtrl.new);
+router.post('/developers', developersCtrl.create);
+router.post('/games/:id/developers', developersCtrl.addToGame);
 
 
 module.exports = router;

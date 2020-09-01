@@ -4,13 +4,13 @@
     <div><%= game.title %></div>
     <div>Release Year: </div>
     <div><%= game.released %></div>
-    <div>Cast:</div>
+    <div>Developer:</div>
     <ul>
       <%- game.developer.map(g => 
         `<li>${g.studio} <small>${g.director}</small></li>`
       ).join('') %>
     </ul>
-    <form id="add-game-developer" action="/games/<%= game._id %>/developers " method="POST">
+    <form id="add-game-developer" action="/games/<%= game._id %>/developers" method="POST">
         <select name="developerId">
           <%- developers.map(d => 
             `<option value="${d._id}">${d.studio} <strong>Head Designer:${d.director}</strong></option>`
