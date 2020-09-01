@@ -1,4 +1,5 @@
 const Game = require("../models/game");
+const Developer = require("../models/developer");
 
 module.exports = {
   index,
@@ -21,11 +22,18 @@ function newGame(req, res) {
 }
 
 function index(req, res) {
-  res.render("games/index", { title: "Games" });
-  request(gameURL, function (err, res, games) {
-    const game = JSON.parse(games);
-    console.log(game);
-  });
+    Game.find({}, function (err, games) {
+        res.render("games/index", { title: "Games Database", games });
+      });
 }
 
-function show(req, res) {}
+function show(req, res) {
+    Game.findById(req.params.id)
+    .populate("developer")
+    .exec(function (err, game) {
+        Developer.find({ _id: { $nin: game.developer } }, function (err, developers) {
+          console.log(developers);
+          res.render("games/show", { title: "Game Detail", game, developers });
+        });
+      });
+}

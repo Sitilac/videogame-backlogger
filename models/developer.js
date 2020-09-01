@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 var developerSchema = new mongoose.Schema(
   {
-    name: String,
+    studio: String,
     director: String,
     games: [
       {

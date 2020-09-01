@@ -4,8 +4,10 @@ const Schema = mongoose.Schema;
 var gameSchema = new mongoose.Schema({
   title: String,
   released: String,
-  developer: String,
-  
+  developer: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Developer',
+  }],
 }, {
   timestamps: true
 });

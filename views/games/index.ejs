@@ -1,3 +1,20 @@
 <%- include('../partials/header') %>
-<h3>Testing Login</h3>  
+<table id="list">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Release<br>Year</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% games.forEach(function(g) { %>
+        <tr>
+          <td><%= g.title %></td>
+          <td><%= g.released %></td>
+          <td><a href="/games/<%= g._id %>">DETAILS</a></td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
 <%- include('../partials/footer') %>
