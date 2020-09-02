@@ -13,20 +13,14 @@ var backlogSchema = new mongoose.Schema({
   timestamps: true
 })
 
-var userSchema = new mongoose.Schema({
+var gamerSchema = new mongoose.Schema({
   name: String,
   email: String,
   avatar: String,
   googleId:String,
   backlog: [backlogSchema],
-  // games: [
-  //   {
-  //     type: Schema.Types.ObjectId,
-  //     ref: "Game",
-  //   },
-  // ],
 }, {
   timestamps: true
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('Gamer', gamerSchema);

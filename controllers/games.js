@@ -1,6 +1,6 @@
 const Game = require("../models/game");
 const Developer = require("../models/developer");
-const Gamer = require('../models/gamer');
+const Gamer = require("../models/gamer");
 
 module.exports = {
   index,
@@ -11,7 +11,7 @@ module.exports = {
 
 function create(req, res) {
   const game = new Game(req.body);
-  console.log(req.body)
+  console.log(req.body);
   res.redirect("/games");
   game.save(function (err) {
     if (err) return res.render("games/new");
@@ -24,20 +24,36 @@ function newGame(req, res) {
 }
 
 function index(req, res) {
-    Game.find({}, function (err, games) {
-        Gamer.find({}, function (err, gamers){
-        res.render("games/index", { title: "Games Database", games, gamers });
-      });
+  Game.find({}, function (err, games) {
+    Gamer.find({}, function (err, gamers) {
+      res.render("games/index", { title: "Games Database", games, gamers });
     });
+  });
 }
 
 function show(req, res) {
-    Game.findById(req.params.id)
+  Game.findById(req.params.id)
     .populate("developer")
     .exec(function (err, game) {
-        Developer.find({ _id: { $nin: game.developer } }, function (err, developers) {
-          console.log(req.user);
-          res.render("games/show", { title: "Game Detail", game, developers });
+      Developer.find({ _id: { $nin: game.developer } }, function (err,developers) {
+        Gamer.findById(req.user).populate('game').exec(function (err, gamer) {
+          let isIncluded = false;
+          console.log(gamer);
+          if (gamer != null) {
+            gamer.backlog.forEach(function (backlogs) {
+              if (backlogs.games.includes(req.params.id)) {
+                isIncluded = true;
+              }
+            });
+          }
+          res.render("games/show", {
+            title: "Game Detail",
+            game,
+            developers,
+            gamer,
+            isIncluded,
+          });
         });
       });
+    });
 }

@@ -23,4 +23,22 @@
         <button name = "backlog" value =`"${game._id}"` >Add to Backlog</button>
     </form>
     <% } %>
+    <%if (isIncluded) {%>
+        <form id="add-to-progress" action="/games/<%= game._id %>/progress" method="POST">
+        <textarea name="progress"></textarea>
+        <button type="submit">Add Progress</button>
+    </form>
+    <% } %>
+    <%if (isIncluded) {%>
+        <% gamer.backlog.forEach(function(b,bidx){ %>
+            <% if(b.games == game.id){ %>
+            <% b.progress.forEach(function(p,idx){ %> 
+                <tr>
+                    <td><%=b.progress[idx]%></td>
+                </tr>
+                <% }); %> 
+            <% } %> 
+        <%});%>
+    <% }; %>
+   
 <%- include('../partials/footer') %>
