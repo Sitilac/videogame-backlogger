@@ -5,14 +5,16 @@ module.exports = {
     addGame,
     addProgress,
     editBacklog,
-    show
+    index
 }
-function show(req,res){
+function index(req,res){
     Gamer.findById(req.user)
-    .populate("games")
-    .exec(function(err, gamer){
-
-    });
+    .populate({
+        path: 'backlog.games',
+        model: 'Game'})
+    .exec(function(err, games){
+        res.render('gamers/index', {title:"Backlog", games});
+    })
 }
 
 function editBacklog(req,res){
