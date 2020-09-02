@@ -13,9 +13,14 @@
     <form id="add-game-developer" action="/games/<%= game._id %>/developers" method="POST">
         <select name="developerId">
           <%- developers.map(d => 
-            `<option value="${d._id}">${d.studio} <strong>Head Designer:${d.director}</strong></option>`
+            `<option value="${d._id}">${d.studio} Head Designer:${d.director}</option>`
           ).join('') %>
         </select>
         <button type="submit">Add Developer</button>
-      </form>
+    </form>
+    <% if ((user && user._id)) { %>
+    <form id="add-to-backlog" action="/games/<%= game._id %>/gamers" method="POST">
+        <button name = "backlog" value =`"${game._id}"` >Add to Backlog</button>
+    </form>
+    <% } %>
 <%- include('../partials/footer') %>

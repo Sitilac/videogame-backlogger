@@ -1,5 +1,6 @@
 const Game = require("../models/game");
 const Developer = require("../models/developer");
+const Gamer = require('../models/gamer');
 
 module.exports = {
   index,
@@ -24,8 +25,10 @@ function newGame(req, res) {
 
 function index(req, res) {
     Game.find({}, function (err, games) {
-        res.render("games/index", { title: "Games Database", games });
+        Gamer.find({}, function (err, gamers){
+        res.render("games/index", { title: "Games Database", games, gamers });
       });
+    });
 }
 
 function show(req, res) {
@@ -33,6 +36,7 @@ function show(req, res) {
     .populate("developer")
     .exec(function (err, game) {
         Developer.find({ _id: { $nin: game.developer } }, function (err, developers) {
+          console.log(req.user);
           res.render("games/show", { title: "Game Detail", game, developers });
         });
       });

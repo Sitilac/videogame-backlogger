@@ -15,7 +15,7 @@ require("./config/database");
 require('./config/passport');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var gamersRouter = require('./routes/gamers');
 var gamesRouter = require('./routes/games');
 var developersRouter = require('./routes/developers');
 
@@ -42,10 +42,9 @@ app.use(function (req, res, next) {
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', gamersRouter);
 app.use('/games', gamesRouter);
 app.use('/', developersRouter);
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
