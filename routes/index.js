@@ -21,9 +21,9 @@ router.get('/oauth2callback', passport.authenticate(
 ));
 
 //Logging out Passport allows you to logout.
-router.get('/logout', function(req,res){
-  res.logout();
+router.get('/logout', function(req, res){
+  req.logout();
   res.redirect('/games');
-})
+});
 
 module.exports = router;
