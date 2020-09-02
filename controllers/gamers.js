@@ -3,12 +3,27 @@ const Game = require('../models/game');
 
 module.exports = {
     addGame,
-    addProgress
+    addProgress,
+    editBacklog,
+    show
+}
+function show(req,res){
+    Gamer.findById(req.user)
+    .populate("games")
+    .exec(function(err, gamer){
+
+    });
+}
+
+function editBacklog(req,res){
+    Gamer.findById(req.user)
+    .exec(function(err, gamer){
+        console.log(gamer.backlog)
+    });
 }
 
 function addProgress(req,res,next){
     let user = req.user;
-    //console.log(user);
     let backlogIdx = -1;
     user.backlog.forEach(function(backlogs){
        backlogIdx = backlogs.games.indexOf(req.params.id);
