@@ -29,15 +29,17 @@
             <button name = "backlog" value =`"${game._id}"` >Remove from Backlog</button>
         </form>
         <% } %>
+    </br>
     <%if (isIncluded) {%>
         <form id="add-to-progress" action="/games/<%= game._id %>/progress" method="POST">
         <textarea name="progress"></textarea>
         <button type="submit">Add Progress</button>
-    </form>
+        </form>
     <% } %>
     <% if (isIncluded) { %>
         <form id ="edit-progress" action="/games/<%= game._id %>/edit" method = "GET">
         <button type="submit">Edit Progress</button>
+        </form>
         <% } %>
     <%if (isIncluded) {%>
         <% gamer.backlog.forEach(function(backlogs,bidx){ %>

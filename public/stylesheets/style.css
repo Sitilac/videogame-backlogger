@@ -59,6 +59,9 @@ body {
   text-align: center;
   opacity: .8;
 }
+button{
+  background-color: rgb(46, 79, 118);
+}
 
 .list-group-item-games .list-group-item:hover{
   opacity: 1;

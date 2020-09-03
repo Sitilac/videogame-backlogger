@@ -1,12 +1,14 @@
 <%- include('../partials/header') %>
 <div class ="header" style="position: absolute; left: 50%;">
     <div style="position: relative; left: -50%;">
+        <section>
 <form id="edit-progress" action="/gamers/<%= id %>/<%= progressIdx %>/?_method=PUT"
     method= "POST">
     <h1 class=""><%= title %></h1>
     <textarea name = "progress"><%= progress.progress %></textarea>
     <button name = "backlog" type = "submit" >Submit Edit</button>
 </form>
+</section>
 </div>
 </div>
     

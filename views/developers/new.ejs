@@ -1,12 +1,14 @@
 <%- include('../partials/header') %>
-<div class="display-box">
 <div class ="header" style="position: absolute; left: 50%;">
     <div style="position: relative; left: -50%;">
-<h1 class=""><%= title %></h1>
+
 </div>
 </div>
+
 <div class = "gdocument" style="position: absolute; left: 50%;">
     <div style="position: relative; left: -50%;">
+        <section id="add-developer">
+        <h1 class=""><%= title %></h1>
         <form id="new-form" action="/developers" method="POST">
             <div class="input-group">
             <input type="text" name="studio" placeholder="Studio">
@@ -16,7 +18,8 @@
             </div>
             </div>
         </form>
+        </section>
     </div>
   </div>
-</div>
+
 <%- include('../partials/footer') %>
