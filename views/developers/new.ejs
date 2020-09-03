@@ -2,11 +2,13 @@
 <div class = "gdocument" style="position: absolute; left: 50%;">
     <div style="position: relative; left: -50%;">
         <form id="new-form" action="/developers" method="POST">
-            <label>Studio:</label>
-            <input type="text" name="studio">
-        <label>Game Director:</label>
-        <input type="text" name="director">
-        <input type="submit" value="Add Developer">
+            <div class="input-group">
+            <input type="text" name="studio" placeholder="Studio">
+            <input type="text" name="director" placeholder="Director">
+            <div class="input-group-append">
+            <input type="submit" value="Add Developer">
+            </div>
+            </div>
         </form>
     </div>
   </div>

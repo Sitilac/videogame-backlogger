@@ -2,11 +2,13 @@
 <div class = "gdocument" style="position: absolute; left: 50%;">
     <div style="position: relative; left: -50%;">
 <form id="new-form" action="/games" method="POST">
-    <label>Title:</label>
-    <input type="text" name="title">
-    <label>Release Year:</label>
-    <input type="text" name="released">
-    <input type="submit" value="Add Game">
+    <div class="input-group">
+        <input type="text" name="title" placeholder="Title">
+        <input type="text" name="released" placeholder="Release Year">
+        <div class="input-group-append">
+        <input type="submit" value="Add Game">
+        </div>
+    </div>
   </form>
   </div>
   </div>

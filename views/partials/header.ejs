@@ -9,18 +9,20 @@
   <title><%= title %></title>
 </head>
 <body>
-  <nav class="navbar-dark bg-dark">
+  <nav class="navbar-dark bg-dark nav-class">
     <a class="navbar-brand" href="/games">Show Games</a>
     <a class="navbar-brand" href="/games/new">Add Game</a>
     <a class="navbar-brand" href="/developers/new">Add Developer</a>
+    <% if (user) { %>
+        <a class="navbar-brand" href="/gamers">Display Backlog</a>
+    <% } %>
+    <span class="login">
     <% if (user) { %>
         <a class="navbar-brand" href="/logout"><i class="material-icons left"></i>Log Out</a>
     <% } else { %>
         <a class="navbar-brand" href="/auth/google"><i class="material-icons left"></i>Login with Google</a>
         <% } %>
-    <% if (user) { %>
-        <a class="navbar-brand" href="/gamers">Display Backlog</a>
-    <% } %>
+    </span>
   </nav>
   <main>
     <div class ="header" style="position: absolute; left: 50%;">

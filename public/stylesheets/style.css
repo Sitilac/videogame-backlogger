@@ -9,6 +9,14 @@ html {
 .container{
   position: relative;
 }
+.nav-class{
+  opacity: .8;
+  display: flex;
+  justify-content: flex-end;
+}
+.nav-class .login{
+  justify-self: flex-end;
+}
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: transparent;
@@ -32,3 +40,4 @@ body {
 .list-group-item-games .list-group-item:hover{
   opacity: 1;
 }
+
