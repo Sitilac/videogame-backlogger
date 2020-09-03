@@ -1,14 +1,15 @@
 @font-face{
-  font-family: 'ArcadeClassic';
-  src: url('../fonts/ArcadeClassic.eot');
-  src: url('../fonts/ArcadeClassic.eot?#iefix') format('embedded-opentype'),
-      url('../fonts/ArcadeClassic.woff2') format('woff2'),
-      url('../fonts/ArcadeClassic.woff') format('woff'),
-      url('../fonts/ARCADECLASSIC.TTF') format('truetype'),
-      url('../fonts/ArcadeClassic.svg#ArcadeClassic') format('svg');
+  font-family: 'Astron Boy Rg';
+  src: url('../fonts/AstronBoyRg-Regular.eot');
+  src: url('../fonts/AstronBoyRg-Regular.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/AstronBoyRg-Regular.woff2') format('woff2'),
+      url('../fonts/AstronBoyRg-Regular.woff') format('woff'),
+      url('../fonts/AstronBoyRg-Regular.ttf') format('truetype'),
+      url('../fonts/AstronBoyRg-Regular.svg#AstronBoyRg-Regular') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
+
 }
 
 html { 
@@ -41,7 +42,7 @@ textarea{
 }
 body {
   background-color: transparent;
-  font-family:'ArcadeClassic';
+  font-family:'Astron Boy Rg';
 }
 .header{
   position: absolute; top:30%;

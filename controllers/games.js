@@ -32,9 +32,14 @@ function index(req, res) {
 }
 
 function show(req, res) {
+let noDev = false;
   Game.findById(req.params.id)
     .populate("developer")
     .exec(function (err, game) {
+    if(typeof(game.developer) === "undefined"){
+        console.log("entered");
+        noDev = true;
+    }
       Developer.find({ _id: { $nin: game.developer } }, function (err,developers) {
         Gamer.findById(req.user).populate('game').exec(function (err, gamer) {
           let isIncluded = false;
@@ -51,6 +56,7 @@ function show(req, res) {
             developers,
             gamer,
             isIncluded,
+            noDev
           });
         });
       });

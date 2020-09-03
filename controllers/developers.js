@@ -8,7 +8,12 @@ module.exports = {
 };
 function addToGame(req, res) {
   Game.findById(req.params.id, function (err, game) {
-    game.developer.push(req.body.developerId);
+    if(typeof(req.body.developerId) === "undefined"){
+        console.log("entered");
+        res.redirect(`/games/${game._id}`);
+        return;
+    }
+    game.developer = req.body.developerId;
     game.save(function (err) {});
     Developer.findById(req.body.developerId, function (err, developer) {
       developer.games.push(game._id);

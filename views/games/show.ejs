@@ -6,12 +6,9 @@
     <h1><%= title %></h1>
     <div>Title:  <%= game.title %></div>
     <div>Release Year:  <%=game.released %></div>
-    <div>Developer:</div>
-    <ul>
-      <%- game.developer.map(games => 
-        `<li>${games.studio} <small>${games.director}</small></li>`
-      ).join('') %>
-    </ul>
+    <% if(!noDev){ %> 
+    <div>Developer:<%=game.developer.studio;%> </div>
+    <% } %> 
     <form id="add-game-developer" action="/games/<%= game._id %>/developers" method="POST">
         <select name="developerId">
           <%- developers.map(developer => 
@@ -19,6 +16,7 @@
           ).join('') %>
         </select>
         <button type="submit">Assign Developer</button>
+        <a href="/developers/new"><input type =button value ='Add Developer'></a>
     </form>
     <% if ((user && user._id) && !isIncluded) { %>
     <form id="add-to-backlog" action="/games/<%= game._id %>/gamers" method="POST">

@@ -84,7 +84,7 @@ function addGame(req,res, next){
     .exec(function (err, game) {
         req.user.backlog.push({games: game});
         req.user.save(function(err){
-            res.redirect('/games');
+            res.redirect(`/games/${req.params.id}`);
         })
       });
 }
