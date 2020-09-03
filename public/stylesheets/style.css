@@ -1,16 +1,16 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: grid;
 }
 
-a {
-  color: #00B7FF;
+.list-group-item-games .list-group-item{
+  background-color: #1f032c;
+  border-color: white;
+  color:#ac8828 ;
+  font-size: large;
+  text-align: center;
 }
-body > nav {
-  grid-area: nav;
-  background-color: #b8c0c2;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0 20px 0 30px;
+
+.list-group-item-games .list-group-item:hover{
+  opacity: .8;
 }
