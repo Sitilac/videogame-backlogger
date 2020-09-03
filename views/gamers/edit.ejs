@@ -1,5 +1,9 @@
 <%- include('../partials/header') %>
-
+<div class ="header" style="position: absolute; left: 50%;">
+    <div style="position: relative; left: -50%;">
+<h1 class=""><%= title %></h1>
+</div>
+</div>
 <form id="edit-progress" action="/gamers/<%= id %>/<%= progressIdx %>/?_method=PUT"
     method= "POST">
     <textarea name = "progress"><%= progress.progress %></textarea>
