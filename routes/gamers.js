@@ -5,7 +5,7 @@ const gamersCtrl = require('../controllers/gamers');
 router.get('/gamers', gamersCtrl.index);
 router.post('/games/:id/gamers', gamersCtrl.addGame);
 router.post('/games/:id/progress', gamersCtrl.addProgress);
-router.put('/games/:id', gamersCtrl.editBacklog);
+router.delete('/gamers/:id/', gamersCtrl.delete);
 
 
 

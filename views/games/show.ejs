@@ -6,19 +6,19 @@
     <div><%= game.released %></div>
     <div>Developer:</div>
     <ul>
-      <%- game.developer.map(g => 
-        `<li>${g.studio} <small>${g.director}</small></li>`
+      <%- game.developer.map(games => 
+        `<li>${games.studio} <small>${games.director}</small></li>`
       ).join('') %>
     </ul>
     <form id="add-game-developer" action="/games/<%= game._id %>/developers" method="POST">
         <select name="developerId">
-          <%- developers.map(d => 
-            `<option value="${d._id}">${d.studio} Head Designer:${d.director}</option>`
+          <%- developers.map(developer => 
+            `<option value="${developer._id}">${developer.studio} Head Designer:${developer.director}</option>`
           ).join('') %>
         </select>
         <button type="submit">Add Developer</button>
     </form>
-    <% if ((user && user._id)) { %>
+    <% if ((user && user._id) && !isIncluded) { %>
     <form id="add-to-backlog" action="/games/<%= game._id %>/gamers" method="POST">
         <button name = "backlog" value =`"${game._id}"` >Add to Backlog</button>
     </form>
@@ -29,12 +29,18 @@
         <button type="submit">Add Progress</button>
     </form>
     <% } %>
+    <% if (isIncluded) { %>
+        <form id="delete-from-backlog" action="/gamers/<%= game._id %>?_method=DELETE"
+            method= "POST">
+            <button name = "backlog" value =`"${game._id}"` >Remove from Backlog</button>
+        </form>
+        <% } %>
     <%if (isIncluded) {%>
-        <% gamer.backlog.forEach(function(b,bidx){ %>
-            <% if(b.games == game.id){ %>
-            <% b.progress.forEach(function(p,idx){ %> 
+        <% gamer.backlog.forEach(function(backlogs,bidx){ %>
+            <% if(backlogs.games == game.id){ %>
+            <% backlogs.progress.forEach(function(p,idx){ %> 
                 <tr>
-                    <td><%=b.progress[idx]%></td>
+                    <td><%=backlogs.progress[idx]%></td>
                 </tr>
                 <% }); %> 
             <% } %> 

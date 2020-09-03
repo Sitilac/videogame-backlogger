@@ -8,12 +8,12 @@
       </tr>
     </thead>
     <tbody>
-        <% games.backlog.forEach(function(b) { %>
+        <% games.backlog.forEach(function(backlogs) { %>
           <tr>
-            <%b.games.forEach(function(g){ %> 
-            <td><%= g.title %></td>
-            <td><%= g.released %></td>
-            <td><a href="/games/<%= g._id %>">DETAILS</a></td>
+            <%backlogs.games.forEach(function(game){ %> 
+            <td><%= game.title %></td>
+            <td><%= game.released %></td>
+            <td><a href="/games/<%= game._id %>">DETAILS</a></td>
           </tr>
         <% }); %> 
           <% }); %>

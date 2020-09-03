@@ -38,7 +38,6 @@ function show(req, res) {
       Developer.find({ _id: { $nin: game.developer } }, function (err,developers) {
         Gamer.findById(req.user).populate('game').exec(function (err, gamer) {
           let isIncluded = false;
-          console.log(gamer);
           if (gamer != null) {
             gamer.backlog.forEach(function (backlogs) {
               if (backlogs.games.includes(req.params.id)) {

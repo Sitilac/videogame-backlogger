@@ -5,7 +5,24 @@ module.exports = {
     addGame,
     addProgress,
     editBacklog,
-    index
+    index,
+    delete:deleteGame
+}
+function deleteGame(req,res){
+    let gameIdx = -1;
+    Gamer.findById(req.user, function(err, gamer){
+        gamer.backlog.forEach(function(backlogs, idx){
+            gameIdx = backlogs.games.indexOf(req.params.id);
+            if(gameIdx != -1){
+                console.log(gamer.backlog[idx]);
+                gamer.backlog.splice(idx, 1);
+                gamer.save(function(err){
+                    console.log("Working");
+                })
+            }
+        })
+    })
+    res.redirect(`/games/${req.params.id}`)
 }
 function index(req,res){
     Gamer.findById(req.user)

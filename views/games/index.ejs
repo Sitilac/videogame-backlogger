@@ -8,11 +8,11 @@
       </tr>
     </thead>
     <tbody>
-      <% games.forEach(function(g) { %>
+      <% games.forEach(function(game) { %>
         <tr>
-          <td><%= g.title %></td>
-          <td><%= g.released %></td>
-          <td><a href="/games/<%= g._id %>">DETAILS</a></td>
+          <td><%= game.title %></td>
+          <td><%= game.released %></td>
+          <td><a href="/games/<%= game._id %>">DETAILS</a></td>
         </tr>
         <% }); %>
       </tbody>
