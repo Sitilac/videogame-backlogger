@@ -23,12 +23,6 @@
         <button name = "backlog" value =`"${game._id}"` >Add to Backlog</button>
     </form>
     <% } %>
-    <%if (isIncluded) {%>
-        <form id="add-to-progress" action="/games/<%= game._id %>/progress" method="POST">
-        <textarea name="progress"></textarea>
-        <button type="submit">Add Progress</button>
-    </form>
-    <% } %>
     <% if (isIncluded) { %>
         <form id="delete-from-backlog" action="/gamers/<%= game._id %>?_method=DELETE"
             method= "POST">
@@ -36,13 +30,21 @@
         </form>
         <% } %>
     <%if (isIncluded) {%>
+        <form id="add-to-progress" action="/games/<%= game._id %>/progress" method="POST">
+        <textarea name="progress"></textarea>
+        <button type="submit">Add Progress</button>
+    </form>
+    <% } %>
+    <% if (isIncluded) { %>
+        <form id ="edit-progress" action="/games/<%= game._id %>/edit" method = "GET">
+        <button type="submit">Edit Progress</button>
+        <% } %>
+    <%if (isIncluded) {%>
         <% gamer.backlog.forEach(function(backlogs,bidx){ %>
             <% if(backlogs.games == game.id){ %>
-            <% backlogs.progress.forEach(function(p,idx){ %> 
                 <tr>
-                    <td><%=backlogs.progress[idx]%></td>
+                    <td><%=backlogs.progress%></td>
                 </tr>
-                <% }); %> 
             <% } %> 
         <%});%>
     <% }; %>

@@ -8,7 +8,7 @@ var backlogSchema = new mongoose.Schema({
       ref: "Game",
     }
   ],
-  progress: Array,
+  progress: String,
 }, {
   timestamps: true
 })

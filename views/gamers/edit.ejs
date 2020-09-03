@@ -1,0 +1,10 @@
+<%- include('../partials/header') %>
+
+<form id="edit-progress" action="/gamers/<%= id %>/<%= progressIdx %>/?_method=PUT"
+    method= "POST">
+    <textarea name = "progress"><%= progress.progress %></textarea>
+    <button name = "backlog" type = "submit" >Submit Edit</button>
+</form>
+
+    
+<%- include('../partials/footer') %>

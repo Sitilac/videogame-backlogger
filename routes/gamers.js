@@ -6,6 +6,8 @@ router.get('/gamers', gamersCtrl.index);
 router.post('/games/:id/gamers', gamersCtrl.addGame);
 router.post('/games/:id/progress', gamersCtrl.addProgress);
 router.delete('/gamers/:id/', gamersCtrl.delete);
+router.get('/games/:id/edit', gamersCtrl.editProgress);
+router.put('/gamers/:id/:idx', gamersCtrl.update);
 
 
 

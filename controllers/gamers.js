@@ -4,9 +4,19 @@ const Game = require('../models/game');
 module.exports = {
     addGame,
     addProgress,
-    editBacklog,
+    editProgress,
     index,
-    delete:deleteGame
+    delete:deleteGame,
+    update
+}
+
+function update(req,res){
+    Gamer.findById(req.user, function(err, gamer){
+        gamer.backlog[req.params.idx].progress = req.body.progress;
+        gamer.save(function(err){
+            res.redirect(`/games/${req.params.id}`);
+        })
+    })
 }
 function deleteGame(req,res){
     let gameIdx = -1;
@@ -14,7 +24,6 @@ function deleteGame(req,res){
         gamer.backlog.forEach(function(backlogs, idx){
             gameIdx = backlogs.games.indexOf(req.params.id);
             if(gameIdx != -1){
-                console.log(gamer.backlog[idx]);
                 gamer.backlog.splice(idx, 1);
                 gamer.save(function(err){
                     console.log("Working");
@@ -34,11 +43,23 @@ function index(req,res){
     })
 }
 
-function editBacklog(req,res){
-    Gamer.findById(req.user)
-    .exec(function(err, gamer){
-        console.log(gamer.backlog)
-    });
+function editProgress(req,res){
+    let gameIdx = -1;
+    let progressIdx = 0;
+    Gamer.findById(req.user, function(err, gamer){
+        gamer.backlog.forEach(function(backlogs, idx){
+            gameIdx = backlogs.games.indexOf(req.params.id);
+            if(gameIdx != -1){
+                progressIdx = idx;
+            }
+        })
+    })
+    Gamer.findById(req.user, function(err, gamer){
+        console.log(progressIdx);
+        let progress = gamer.backlog[progressIdx];
+        let id = req.params.id
+        res.render('gamers/edit', {title:"Progress", progress, progressIdx, id });
+    })
 }
 
 function addProgress(req,res,next){
@@ -47,7 +68,7 @@ function addProgress(req,res,next){
     user.backlog.forEach(function(backlogs){
        backlogIdx = backlogs.games.indexOf(req.params.id);
        if(backlogIdx != -1){
-        backlogs.progress.push(req.body.progress);
+        backlogs.progress = req.body.progress;
         req.user.save(function(err){
         })
         backlogIdx = 0;

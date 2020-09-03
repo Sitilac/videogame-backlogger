@@ -28,6 +28,5 @@ function create(req, res) {
   res.redirect("/games");
   developer.save(function (err) {
     if (err) return res.render("developers/new");
-    console.log(developer);
   });
 }
