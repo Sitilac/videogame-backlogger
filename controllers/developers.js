@@ -5,11 +5,31 @@ module.exports = {
   new: newDeveloper,
   create,
   addToGame,
+  index,
+  show
 };
+
+function show(req,res){
+    let sortKey = req.query.sort || 'games.title';
+    Developer.findById(req.params.id)
+    .populate('games')
+    .sort(sortKey)
+    .exec(function (err,developers){
+        console.log(developers);
+        res.render('developers/show', {title: "Developer games", developers});
+    })
+}
+function index(req,res){
+  let sortKey = req.query.sort || 'studio';
+  Developer.find({})
+  .sort(sortKey)
+  .exec(function (err, developer) {
+      res.render("developers/index", { title: "Developer Database", developer});
+});
+}
 function addToGame(req, res) {
   Game.findById(req.params.id, function (err, game) {
     if(typeof(req.body.developerId) === "undefined"){
-        console.log("entered");
         res.redirect(`/games/${game._id}`);
         return;
     }

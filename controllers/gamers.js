@@ -26,7 +26,6 @@ function deleteGame(req,res){
             if(gameIdx != -1){
                 gamer.backlog.splice(idx, 1);
                 gamer.save(function(err){
-                    console.log("Working");
                 })
             }
         })
@@ -34,7 +33,6 @@ function deleteGame(req,res){
     res.redirect(`/games/${req.params.id}`)
 }
 function index(req,res){
-    console.log(req.query);
     Gamer.findById(req.user)
     .populate({
         path: 'backlog.games',
@@ -57,7 +55,7 @@ function editProgress(req,res){
         })
     })
     Gamer.findById(req.user, function(err, gamer){
-        console.log(progressIdx);
+
         if(progressIdx ==='invalid') res.redirect(`games/${req.params.id}`);
         let progress = gamer.backlog[progressIdx];
         let id = req.params.id

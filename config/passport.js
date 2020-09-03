@@ -11,7 +11,7 @@ passport.use(new GoogleStrategy({
     callbackURL:process.env.GOOGLE_CALLBACK,
     },function(accessToken, refreshToken, profile, cb){//Verify CB function runs when the user just logs in using Oauth
         //profile object is the user's google profile
-        //console.log(profile);
+
         Gamer.findOne({googleId: profile.id}, function(err, gamer){
             if(err) return cb(err);
             if(gamer){

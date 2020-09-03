@@ -11,11 +11,11 @@ module.exports = {
 
 function create(req, res) {
   const game = new Game(req.body);
-  console.log(req.body);
+
   res.redirect("/games");
   game.save(function (err) {
     if (err) return res.render("games/new");
-    console.log(game);
+
   });
 }
 
@@ -39,7 +39,7 @@ function show(req, res) {
     .populate("developer")
     .exec(function (err, game) {
     if(typeof(game.developer) === "undefined"){
-        console.log("entered");
+
         noDev = true;
     }
       Developer.find({ _id: { $nin: game.developer } }, function (err,developers) {

@@ -1,0 +1,7 @@
+<%- include('../partials/header') %>
+<div class="list-group list-group-item-games">
+    <% developer.forEach(function(developer) { %>
+    <a href="/developers/<%= developer._id %>" class="list-group-item list-group-item-action"><%= developer.studio %></a>
+    <% }); %>
+</div>
+<%- include('../partials/footer') %>

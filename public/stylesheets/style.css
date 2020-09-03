@@ -44,11 +44,9 @@ body {
   background-color: transparent;
   font-family:'Astron Boy Rg';
 }
-.header{
-  position: absolute; top:30%;
-}
+
 .gdocument{
-  position: absolute; top:40%;
+  position: absolute; top:20%;
 }
 
 .list-group-item-games .list-group-item{
