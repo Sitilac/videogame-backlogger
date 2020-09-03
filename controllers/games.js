@@ -46,7 +46,7 @@ function show(req, res) {
             });
           }
           res.render("games/show", {
-            title: "Game Detail",
+            title: "Game Details",
             game,
             developers,
             gamer,
