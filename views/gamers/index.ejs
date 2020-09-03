@@ -1,23 +1,9 @@
 <%- include('../partials/header') %>
-<table id="list">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Release<br>Year</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-        <% games.backlog.forEach(function(backlogs) { %>
-          <tr>
-            <%backlogs.games.forEach(function(game){ %> 
-            <td><%= game.title %></td>
-            <td><%= game.released %></td>
-            <td><a href="/games/<%= game._id %>">DETAILS</a></td>
-          </tr>
+<div class="list-group list-group-item-games">
+    <% games.backlog.forEach(function(backlogs) { %>
+        <%backlogs.games.forEach(function(game){ %> 
+            <a href="/games/<%= game._id %>" class="list-group-item list-group-item-action"><%= game.title %></a>
         <% }); %> 
-          <% }); %>
-        </tbody>
-      </table>
-    </table>
+    <% }); %>
+</div>
 <%- include('../partials/footer') %>

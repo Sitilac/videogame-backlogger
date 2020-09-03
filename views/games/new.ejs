@@ -1,4 +1,6 @@
 <%- include('../partials/header') %>
+<div class = "gdocument" style="position: absolute; left: 50%;">
+    <div style="position: relative; left: -50%;">
 <form id="new-form" action="/games" method="POST">
     <label>Title:</label>
     <input type="text" name="title">
@@ -6,4 +8,6 @@
     <input type="text" name="released">
     <input type="submit" value="Add Game">
   </form>
+  </div>
+  </div>
 <%- include('../partials/footer') %>

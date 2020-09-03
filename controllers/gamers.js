@@ -45,7 +45,7 @@ function index(req,res){
 
 function editProgress(req,res){
     let gameIdx = -1;
-    let progressIdx = 0;
+    let progressIdx = 'invalid';
     Gamer.findById(req.user, function(err, gamer){
         gamer.backlog.forEach(function(backlogs, idx){
             gameIdx = backlogs.games.indexOf(req.params.id);
@@ -56,6 +56,7 @@ function editProgress(req,res){
     })
     Gamer.findById(req.user, function(err, gamer){
         console.log(progressIdx);
+        if(progressIdx ==='invalid') res.redirect(`games/${req.params.id}`);
         let progress = gamer.backlog[progressIdx];
         let id = req.params.id
         res.render('gamers/edit', {title:"Progress", progress, progressIdx, id });
