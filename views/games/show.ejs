@@ -31,10 +31,12 @@
         <% } %>
     </br>
     <%if (isIncluded) {%>
+        <div class="input-group input-group-lg">
         <form id="add-to-progress" action="/games/<%= game._id %>/progress" method="POST">
-        <textarea name="progress"></textarea>
+        <textarea class="form-control" name="progress" cols = "60" rows = "7"></textarea>
         <button type="submit">Add Progress</button>
         </form>
+        </div>
     <% } %>
     <% if (isIncluded) { %>
         <form id ="edit-progress" action="/games/<%= game._id %>/edit" method = "GET">
@@ -44,9 +46,7 @@
     <%if (isIncluded) {%>
         <% gamer.backlog.forEach(function(backlogs,bidx){ %>
             <% if(backlogs.games == game.id){ %>
-                <tr>
-                    <td><%=backlogs.progress%></td>
-                </tr>
+                <%-backlogs.progress%>
             <% } %> 
         <%});%>
     <% }; %>

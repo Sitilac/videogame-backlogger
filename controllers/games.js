@@ -24,16 +24,18 @@ function newGame(req, res) {
 }
 
 function index(req, res) {
-  Game.find({}, function (err, games) {
-    Gamer.find({}, function (err, gamers) {
-      res.render("games/index", { title: "Games Database", games, gamers });
+let sortKey = req.query.sort || 'title';
+  Game.find({})
+  .sort(sortKey)
+  .exec(function (err, games) {
+      res.render("games/index", { title: "Games Database", games});
     });
-  });
-}
+  }
+
 
 function show(req, res) {
-let noDev = false;
-  Game.findById(req.params.id)
+    let noDev = false;
+    Game.findById(req.params.id)
     .populate("developer")
     .exec(function (err, game) {
     if(typeof(game.developer) === "undefined"){

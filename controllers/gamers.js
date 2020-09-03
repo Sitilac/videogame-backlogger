@@ -34,10 +34,12 @@ function deleteGame(req,res){
     res.redirect(`/games/${req.params.id}`)
 }
 function index(req,res){
+    console.log(req.query);
     Gamer.findById(req.user)
     .populate({
         path: 'backlog.games',
         model: 'Game'})
+    .sort({'backlog.games.title': 1})
     .exec(function(err, games){
         res.render('gamers/index', {title:"Backlog", games});
     })
