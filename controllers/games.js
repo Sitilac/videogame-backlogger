@@ -9,6 +9,7 @@ module.exports = {
   create,
 };
 
+
 function create(req, res) {
   if(req.body.title === "" || req.body.released ===""){
     res.redirect("/games/new");

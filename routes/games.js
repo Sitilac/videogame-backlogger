@@ -4,7 +4,8 @@ const request = require('request');
 
 const rootURL = "api.rawg.io/api"
 
-const gamesCtrl = require('../controllers/games')
+const gamesCtrl = require('../controllers/games');
+const { route } = require('.');
 
 router.get('/', gamesCtrl.index);
 router.get('/new', gamesCtrl.new);

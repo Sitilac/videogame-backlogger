@@ -3,7 +3,7 @@ var passport = require('passport');
 
 // The root route renders our only view
 router.get('/', function(req, res) {
-  res.redirect('/games');
+  res.render('index', {title: "Home"});
 });
 // Google OAuth login route USER WANTS TO LOGIN
 router.get('/auth/google', passport.authenticate(
