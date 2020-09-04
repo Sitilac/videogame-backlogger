@@ -38,33 +38,32 @@ let sortKey = req.query.sort || 'title';
 
 
 function show(req, res) {
-    let noDev = false;
-    Game.findById(req.params.id)
-    .populate("developer")
-    .exec(function (err, game) {
+  let noDev = false;
+  Game.findById(req.params.id)
+  .populate("developer")
+  .exec(function (err, game) {
     if(typeof(game.developer) === "undefined"){
-
-        noDev = true;
+      noDev = true;
     }
-      Developer.find({ _id: { $nin: game.developer } }, function (err,developers) {
-        Gamer.findById(req.user).populate('game').exec(function (err, gamer) {
-          let isIncluded = false;
-          if (gamer != null) {
-            gamer.backlog.forEach(function (backlogs) {
-              if (backlogs.games.includes(req.params.id)) {
-                isIncluded = true;
-              }
-            });
+  Developer.find({ _id: { $nin: game.developer } }, function (err,developers) {
+    Gamer.findById(req.user).populate('game').exec(function (err, gamer) {
+      let isIncluded = false;
+      if (gamer != null) {
+        gamer.backlog.forEach(function (backlogs) {
+          if (backlogs.games.includes(req.params.id)) {
+            isIncluded = true;
           }
-          res.render("games/show", {
-            title: "Game Details",
-            game,
-            developers,
-            gamer,
-            isIncluded,
-            noDev
-          });
         });
+      }
+      res.render("games/show", {
+        title: "Game Details",
+        game,
+        developers,
+        gamer,
+        isIncluded,
+        noDev
       });
-    });
+   });
+  });
+  });
 }

@@ -22,10 +22,10 @@ function show(req,res){
 function index(req,res){
   let sortKey = req.query.sort || 'studio';
   Developer.find({})
-  .sort(sortKey)
-  .exec(function (err, developer) {
+    .sort(sortKey)
+    .exec(function (err, developer) {
       res.render("developers/index", { title: "Developer Database", developer});
-});
+    });
 }
 function addToGame(req, res) {
   Game.findById(req.params.id, function (err, game) {

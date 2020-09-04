@@ -15,8 +15,8 @@ function update(req,res){
         gamer.backlog[req.params.idx].progress = req.body.progress;
         gamer.save(function(err){
             res.redirect(`/games/${req.params.id}`);
-        })
-    })
+        });
+    });
 }
 function deleteGame(req,res){
     let gameIdx = -1;
@@ -25,18 +25,18 @@ function deleteGame(req,res){
             gameIdx = backlogs.games.indexOf(req.params.id);
             if(gameIdx != -1){
                 gamer.backlog.splice(idx, 1);
-                gamer.save(function(err){
-                })
+                gamer.save(function(err){})
             }
-        })
-    })
-    res.redirect(`/games/${req.params.id}`)
+        });
+    });
+    res.redirect(`/games/${req.params.id}`);
 }
 function index(req,res){
     Gamer.findById(req.user)
     .populate({
         path: 'backlog.games',
-        model: 'Game'})
+        model: 'Game'
+    })
     .sort({'games': 1})
     .exec(function(err, games){
         res.render('gamers/index', {title:"Backlog", games});
@@ -52,15 +52,14 @@ function editProgress(req,res){
             if(gameIdx != -1){
                 progressIdx = idx;
             }
-        })
-    })
+        });
+    });
     Gamer.findById(req.user, function(err, gamer){
-
         if(progressIdx ==='invalid') res.redirect(`games/${req.params.id}`);
         let progress = gamer.backlog[progressIdx];
         let id = req.params.id
         res.render('gamers/edit', {title:"Progress", progress, progressIdx, id });
-    })
+    });
 }
 
 function addProgress(req,res,next){
@@ -71,16 +70,14 @@ function addProgress(req,res,next){
     let user = req.user;
     let backlogIdx = -1;
     user.backlog.forEach(function(backlogs){
-       backlogIdx = backlogs.games.indexOf(req.params.id);
-       if(backlogIdx != -1){
-        backlogs.progress = req.body.progress;
-        req.user.save(function(err){
-        })
-        backlogIdx = 0;
+        backlogIdx = backlogs.games.indexOf(req.params.id);
+        if(backlogIdx != -1){
+            backlogs.progress = req.body.progress;
+            req.user.save(function(err){});
+            backlogIdx = 0;
        }
-    })
+    });
     res.redirect('/games');
-      
 }
 
 function addGame(req,res, next){
@@ -89,6 +86,6 @@ function addGame(req,res, next){
         req.user.backlog.push({games: game});
         req.user.save(function(err){
             res.redirect(`/games/${req.params.id}`);
-        })
-      });
+        });
+    });
 }
