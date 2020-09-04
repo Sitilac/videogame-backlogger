@@ -15,8 +15,10 @@
             `<option value="${developer._id}">${developer.studio} (Head Designer:${developer.director})</option>`
           ).join('') %>
         </select>
+        <% if(user){ %> 
         <button type="submit">Assign Developer</button>
         <a href="/developers/new"><input type =button value ='Add Developer'></a>
+        <% } %>
     </form>
     <% if ((user && user._id) && !isIncluded) { %>
     <form id="add-to-backlog" action="/games/<%= game._id %>/gamers" method="POST">
