@@ -37,7 +37,7 @@ function index(req,res){
     .populate({
         path: 'backlog.games',
         model: 'Game'})
-    .sort({'backlog.games.title': 1})
+    .sort({'games': 1})
     .exec(function(err, games){
         res.render('gamers/index', {title:"Backlog", games});
     })
