@@ -64,6 +64,10 @@ function editProgress(req,res){
 }
 
 function addProgress(req,res,next){
+    if(req.body.progress === ""){
+        res.redirect(`/games/${req.params.id}`);
+        return;
+    }
     let user = req.user;
     let backlogIdx = -1;
     user.backlog.forEach(function(backlogs){
