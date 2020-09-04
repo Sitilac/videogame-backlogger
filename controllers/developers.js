@@ -49,6 +49,10 @@ function newDeveloper(req, res) {
 }
 
 function create(req, res) {
+  if(req.body.studio === "" || req.body.director === ""){
+    res.redirect('/developers/new');
+    return;
+  }
   const developer = Developer(req.body);
   res.redirect("/games");
   developer.save(function (err) {

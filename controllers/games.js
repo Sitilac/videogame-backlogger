@@ -10,8 +10,11 @@ module.exports = {
 };
 
 function create(req, res) {
+  if(req.body.title === "" || req.body.released ===""){
+    res.redirect("/games/new");
+    return;
+  }
   const game = new Game(req.body);
-
   res.redirect("/games");
   game.save(function (err) {
     if (err) return res.render("games/new");
