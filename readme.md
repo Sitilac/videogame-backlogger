@@ -1,5 +1,5 @@
 # Video Game Backlog Tracker
-
+This videogame backlog tracker allows the the user to add their favorite video games to their backlog and track their progress in their games.
 ## Screenshots
 ![FrontPage](https://i.imgur.com/yFReg6B.png)
 ![AddDeveloper](https://i.imgur.com/DX5gaP3.png)
@@ -7,7 +7,7 @@
 ![GameDetailsLogin](https://i.imgur.com/6NpDLlX.png)
 
 ## Technlogies Used
-Javascript, Mongoose, HTML5, CSS/CSS Bootstrap
+Javascript, Mongoose, HTML5, CSS/CSS Bootstrap, NodeJS, Express, 
 
 ## Application and Planning
 [Video Game Backlogger](https://videogamelogger.herokuapp.com/)
