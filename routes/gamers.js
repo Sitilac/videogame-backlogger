@@ -9,7 +9,9 @@ router.delete('/gamers/:id/', gamersCtrl.delete);
 router.get('/games/:id/edit', gamersCtrl.editProgress);
 router.put('/gamers/:id/:idx', gamersCtrl.update);
 
-
-
+function isLoggedIn(req,res,next){
+    if(req.isAuthenticated()) return next();
+    res.redirect('/auth/google');
+}
 
 module.exports = router;
